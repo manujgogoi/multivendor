@@ -6,7 +6,6 @@ from django.contrib.auth.models import (
 from django.utils.translation import ugettext_lazy as _
 
 
-
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, is_active=True, is_staff=False, is_admin="False"):
         if not email:
@@ -56,6 +55,12 @@ class User(AbstractBaseUser):
     def get_short_name(self):
         return self.email
 
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
     @property
     def is_staff(self):
         return self.staff
@@ -67,5 +72,3 @@ class User(AbstractBaseUser):
     @property
     def is_active(self):
         return self.active
-
-    

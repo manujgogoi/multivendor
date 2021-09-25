@@ -144,7 +144,31 @@ workflow using pip, virtualenv, and the good old requirements.txt.
     			}
 		}
 
-	iv) Migrate db: python manage.py migrate
+	iv) Migrate db: 
+		>> python manage.py makemigrations
+		>> python manage.py migrate
 	v) Run dev Server: python manage.py runserver
 
+5) Create superuser:
+>> py manage.py createsuperuser
 
+
+6) Fix 'User' object has no attribute 'has_module_perms'
+	i) Add has_perm(self, perm, obj=None) and has_module_perms(self, app_label) to our custom user model
+
+
+7) Register account.User to admin.
+
+
+8) Create UserAdmin in admin.
+
+
+9) Change app name account to accounts.
+	i) Delete database tables.
+	ii) Rename account dir to accounts
+	iii) Change AccountConfig(AppConfig) to AccountsConfig(AppConfig) in accounts.apps.py.
+	iv) Change name = 'account' to name = 'accounts'
+	v) In settings.py > INSTALLED_APPS change account to accounts.
+	vi) Change any imports from account to accounts carefully.
+	vii) py manage.py makemigrations accounts
+	viii) py manage.py migrate

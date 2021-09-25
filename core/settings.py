@@ -40,10 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Our apps
-    'account',
+    'accounts',
 ]
 
-AUTH_USER_MODEL = 'account.User' # Changes the built-in user model to ours
+AUTH_USER_MODEL = 'accounts.User' # Changes the built-in user model to ours
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
