@@ -97,14 +97,11 @@ workflow using pip, virtualenv, and the good old requirements.txt.
 --------------------------------------------------------
 1) Django project setup
 
-
 # Install django using pipenv
 >> pipenv install django
 
-
 # Create a django project in current dir
 >> django-admin startproject core .
-
 
 2) Create account app
 >> python manage.py startapp account 
@@ -152,16 +149,12 @@ workflow using pip, virtualenv, and the good old requirements.txt.
 5) Create superuser:
 >> py manage.py createsuperuser
 
-
 6) Fix 'User' object has no attribute 'has_module_perms'
 	i) Add has_perm(self, perm, obj=None) and has_module_perms(self, app_label) to our custom user model
 
-
 7) Register account.User to admin.
 
-
-8) Create UserAdmin in admin.
-
+8) Create UserAdmin in admin by extending django.contrib.auth.admin.UserAdmin as BaseUserAdmin.
 
 9) Change app name account to accounts.
 	i) Delete database tables.
@@ -172,3 +165,8 @@ workflow using pip, virtualenv, and the good old requirements.txt.
 	vi) Change any imports from account to accounts carefully.
 	vii) py manage.py makemigrations accounts
 	viii) py manage.py migrate
+
+10) Create forms.py
+	i) Add RegisterForm(forms.ModelForm)
+	ii) Add UserAdminCreationForm(forms.ModelForm)
+	iii) Add UserAdminChangeForm(forms.ModelForm)
