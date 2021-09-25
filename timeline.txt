@@ -1,0 +1,150 @@
+24-09-2021
+====================================================
+01:04 PM - 03:06 PM
+----------------------------------------------------
+1) pipenv setup
+pipenv = pip + virtualenv
+Pipenv is a packaging tool for Python that solves some common problems associated with the typical 
+workflow using pip, virtualenv, and the good old requirements.txt.
+
+
+# Intallation: 
+>> pip install pipenv
+
+# Upgrade to latest version:
+>> pip install --upgrade pipenv
+
+
+# Activate virtual env:
+>> pipenv shell
+
+
+# Check python version:
+>> python --version
+
+
+# Check path:
+>> python
+>> >>> import sys
+>> >>> sys.executable
+>> >>> quit()
+
+
+# Install a package:
+>> pipenv install <python_package_name>
+
+
+# Deactivate virtual env:
+>> exit
+
+
+# Run a python script intalled into the virtualenv
+>> pipenv run script.py
+
+
+# Install packages using requirements.txt
+>> pipenv install -r snippets/requirements.txt
+
+
+# Generate output in requirements.txt format
+>> pipenv lock -r
+>> pipenv lock -r --dev (this include both the default and development dependencies.
+
+
+# Install both develop and default packages
+>> pipenv install <package_name> --dev
+
+
+# Uninstall a package
+>> pipenv uninstall <package_name>
+
+
+# Change python version
+	1. Change Pipfile python version to 3.6
+	2. >> pipenv --python 3.6
+
+
+# Remove virtual environment
+>> pipenv --rm
+
+
+# Create virtual environment using existing pipfile
+>> pipenv install
+
+
+# Check path of the virtual env
+>> pipenv  --venv
+
+
+# You can enforce that your Pipfile.lock is up to date using the --deploy flag:
+>> pipenv install --deploy
+
+
+# Installs all packages specified in Pipfile.lock.
+>> pipenv sync
+
+
+# Ignore Pipfile when installing, using the Pipfile.lock.
+>> pipenv install --ignore-pipfile
+
+# Create .env file in project root directory
+
+
+
+25-09-2021
+========================================================
+06:30 PM to 08:30 PM
+--------------------------------------------------------
+1) Django project setup
+
+
+# Install django using pipenv
+>> pipenv install django
+
+
+# Create a django project in current dir
+>> django-admin startproject core .
+
+
+2) Create account app
+>> python manage.py startapp account 
+
+3) Create a custom user model in account app
+	i) In account.model import django.contrib.auth.models.AbstractBaseUser
+	ii) Create a User class by extending AbstractBaseUser
+	iii) Add email, active, staff, admin, and date_joined fileds.
+	iv) Add USERNAME_FIELD = 'email'
+	v) Add methods get_full_name(), and get_short_name()
+	vi) Add @property methods- is_staff(), is_admin(), and is_active()
+4) Create a manage class in account app
+	i) Import django.contrib.auth.models.BaseUserManager
+	ii) Create a UserManager class by extending BaseUserManager class
+	iii) Implement create_user() method and also create_staffuser(), and create_superuser() methods.
+
+3) In projects settings.py
+	i) Add account app to INSTALLED_APPS
+	ii) Add AUTH_USER_MODEL = 'accounts.User'
+	iii) Set timezone- TIME_ZONE = 'Asia/Calcutta' 
+	
+4) MySQL database settings
+	i) Create a new MySQL database called multivendor in phpMyAdmin (XAMPP)
+	ii) Install python code for supporting the MySQL Db: pipenv install mysqlclient
+	iii) Inside projects settings.py file change the DATABASE dictionary as follows:
+		DATABASES = {
+    			'default': {
+        			'ENGINE': 'django.db.backends.mysql',
+        			'NAME': 'mysite',	# mysql database
+        			'USER': 'root',		# database username
+        			'PASSWORD': '',		# database user password
+        			'HOST': '',		
+        			'PORT': '',
+        			'OPTIONS': {
+         			   'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
+        			}
+    			}
+		}
+
+	iv) Migrate db: python manage.py migrate
+	v) Run dev Server: python manage.py runserver
+
+
