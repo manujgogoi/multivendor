@@ -170,3 +170,33 @@ workflow using pip, virtualenv, and the good old requirements.txt.
 	i) Add RegisterForm(forms.ModelForm)
 	ii) Add UserAdminCreationForm(forms.ModelForm)
 	iii) Add UserAdminChangeForm(forms.ModelForm)
+
+27-09-2021
+========================================================
+06:30 AM
+--------------------------------------------------------
+
+1) Remove multivendor from local repository
+
+2) git clone https://github.com/manujgogoi/multivendor.git
+
+3) start xampp server
+
+4) Remove all tables from multivendor database using phpMyAdmin
+
+5) Update Accounts app:
+	i) Delete all migrations from Accounts app
+	ii) Add PermissionsMixin to our User class
+	iii) Remove ModelAdmin.filter_horizontal from UserAdmin class
+	iv) Add (override) get_form() method to UserAdmin class
+		- Prevent non-superusers from editing user permissions
+		- Prevent non-superusers from editing their own permissions
+		- Prevent non-superusers from editing superusers permissions
+
+6) Execute following commands:
+	>>py manage.py makemigrations 
+	>>py manage.py migrate
+	>>py manage.py createsuperuser
+
+
+7) git add, commit, and push to github repo.

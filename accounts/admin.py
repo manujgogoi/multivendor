@@ -6,16 +6,68 @@ from .forms import UserAdminCreationForm, UserAdminChangeForm
 User = get_user_model()
 
 class UserAdmin(BaseUserAdmin):
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        is_superuser = request.user.is_superuser
+        disabled_fields = set()  # type: Set[str]
+
+        if not is_superuser:
+            disabled_fields |= {
+                'is_superuser',
+                'user_permissions',
+            }
+
+        # Prevent non-superusers from editing their own permissions
+        # Prevent non-superusers from editing superuser permissions
+        if (
+            not is_superuser
+            and obj is not None
+            and (
+                    obj.is_superuser == True
+                    or obj == request.user
+                )
+        ):
+            disabled_fields |= {
+                'is_staff',
+                'is_superuser',
+                'groups',
+                'user_permissions'
+            }
+
+        # Prevent non-superusers from editing their own permissions
+        # if (
+        #     not is_superuser
+        #     and obj is not None
+        #     and obj == request.user
+        # ):
+        #     disabled_fields |= {
+        #         'is_staff',
+        #         'is_superuser',
+        #         'groups',
+        #         'user_permissions',
+        #     }
+
+        for f in disabled_fields:
+            if f in form.base_fields:
+                form.base_fields[f].disabled = True
+
+        return form
+
+
+
     search_fields = ['email']
+    readonly_fields = ('date_joined', )
+    
     form = UserAdminChangeForm  # Edit view
     add_form = UserAdminCreationForm # Create view
 
-    list_display = ('email', 'admin')
-    list_filter = ('admin', 'staff', 'active')
+    list_display = ('email', 'is_superuser')
+    list_filter = ('is_superuser', 'is_staff', 'is_active')
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('email', 'password', 'date_joined')}),
         ('Personal info', {'fields': ()}),
-        ('Permissions', {'fields': ('admin', 'active', 'staff')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'user_permissions',)}),
     )
 
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -27,14 +79,13 @@ class UserAdmin(BaseUserAdmin):
         ),
         (
             "Permissions", {
-                'fields': ('active', 'staff', 'admin')
+                'fields': ('is_active', 'is_staff', 'is_superuser', 'user_permissions')
             }
 
         )
     )
     search_fields = ['email']
     ordering = ['email']
-    filter_horizontal = ()
     class Meta:
         model = User
 
