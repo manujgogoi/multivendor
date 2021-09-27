@@ -173,7 +173,7 @@ workflow using pip, virtualenv, and the good old requirements.txt.
 
 27-09-2021
 ========================================================
-06:30 AM
+06:30 AM - 09:30 AM
 --------------------------------------------------------
 
 1) Remove multivendor from local repository
@@ -200,3 +200,21 @@ workflow using pip, virtualenv, and the good old requirements.txt.
 
 
 7) git add, commit, and push to github repo.
+
+
+10:04 PM - 11:00 PM
+--------------------------------------------
+
+8) Update Accounts.models
+	i) Add help_text to User model fields
+
+9) Unregister Group (in accounts.admin.py)
+	>>from django.contrib.auth.models import Group
+	>>admin.site.unregister(Group)
+
+10) Remove is_active permissions from staff_user
+	i) add is_active in disabled_fields section
+
+11) >>git add .
+	>>git commit
+	

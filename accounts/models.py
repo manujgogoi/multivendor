@@ -34,8 +34,12 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email           = models.EmailField(_('email id'), max_length=255, unique=True)
-    is_active       = models.BooleanField(_('is active'), default=True) # Can login
-    is_staff        = models.BooleanField(_('staff status'), default=False) # Staff user non Super
+    is_active       = models.BooleanField(_('is active'), default=True,
+        help_text=_('Designates whether this user should be treated as '
+                    'active. Unselect this instead of deleting accounts.')) # Can login
+    is_staff        = models.BooleanField(_('staff status'), default=False,
+        help_text=_('Designates whether the user can log into this admin'
+                    'site.')) # Staff user non Super
     is_superuser    = models.BooleanField(_('is superuser'), default=False) # Superuser
     date_joined     = models.DateTimeField(_('date joined'), auto_now_add=True)
     

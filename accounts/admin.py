@@ -1,12 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import Group
 from .forms import UserAdminCreationForm, UserAdminChangeForm
 
 User = get_user_model()
 
 class UserAdmin(BaseUserAdmin):
 
+    # Override get_form method to customize user permissions in Admin
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         is_superuser = request.user.is_superuser
@@ -24,29 +26,16 @@ class UserAdmin(BaseUserAdmin):
             not is_superuser
             and obj is not None
             and (
-                    obj.is_superuser == True
-                    or obj == request.user
-                )
+                obj.is_superuser == True
+                or obj == request.user
+            )
         ):
             disabled_fields |= {
+                'is_active',
                 'is_staff',
                 'is_superuser',
-                'groups',
                 'user_permissions'
             }
-
-        # Prevent non-superusers from editing their own permissions
-        # if (
-        #     not is_superuser
-        #     and obj is not None
-        #     and obj == request.user
-        # ):
-        #     disabled_fields |= {
-        #         'is_staff',
-        #         'is_superuser',
-        #         'groups',
-        #         'user_permissions',
-        #     }
 
         for f in disabled_fields:
             if f in form.base_fields:
@@ -62,11 +51,10 @@ class UserAdmin(BaseUserAdmin):
     form = UserAdminChangeForm  # Edit view
     add_form = UserAdminCreationForm # Create view
 
-    list_display = ('email', 'is_superuser')
+    list_display = ('email', 'is_active', 'is_staff', 'is_superuser')
     list_filter = ('is_superuser', 'is_staff', 'is_active')
     fieldsets = (
         (None, {'fields': ('email', 'password', 'date_joined')}),
-        ('Personal info', {'fields': ()}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'user_permissions',)}),
     )
 
@@ -85,9 +73,10 @@ class UserAdmin(BaseUserAdmin):
         )
     )
     search_fields = ['email']
-    ordering = ['email']
+    ordering = ['date_joined']
     class Meta:
         model = User
 
 
 admin.site.register(User, UserAdmin)
+admin.site.unregister(Group)
