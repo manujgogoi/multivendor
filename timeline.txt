@@ -218,3 +218,9 @@ workflow using pip, virtualenv, and the good old requirements.txt.
 11) >>git add .
 	>>git commit
 	
+30-09-2021
+========================================================
+02:11 PM
+--------------------------------------------------------
+
+1) >>git push

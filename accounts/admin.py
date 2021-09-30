@@ -12,7 +12,7 @@ class UserAdmin(BaseUserAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         is_superuser = request.user.is_superuser
-        disabled_fields = set()  # type: Set[str]
+        disabled_fields = set()  # type: set[str]
 
         if not is_superuser:
             disabled_fields |= {
