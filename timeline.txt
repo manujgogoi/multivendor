@@ -224,3 +224,24 @@ workflow using pip, virtualenv, and the good old requirements.txt.
 --------------------------------------------------------
 
 1) >>git push
+
+
+07-10-2021
+========================================================
+01:30 PM
+--------------------------------------------------------
+
+1) Install Coverage
+	>>pipenv coverage
+
+2) Test accounts.models.py
+	>>coverage run --source='.' manage.py test
+	>>coverage report
+	>>coverage erase # Remove gathered data 
+	>>coverage html # Detailed html report
+
+08-10-2021
+========================================================
+06:30 PM - 11:21 PM
+--------------------------------------------------------
+Implement testing for accounts.models.py

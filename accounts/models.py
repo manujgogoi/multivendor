@@ -8,7 +8,8 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None, is_active=True, is_staff=False, is_superuser="False"):
+
+    def create_user(self, email, password=None, is_active=True, is_staff=False, is_superuser=False):
         if not email:
             raise ValueError(_("Users must have an email address"))
         if not password:
@@ -25,7 +26,7 @@ class UserManager(BaseUserManager):
         return user_obj
 
     def create_staffuser(self, email, password=None):
-        user = self.create_user(email, password=password, is_staff=True)
+        user = self.create_user(email, password=password, is_staff=True, is_superuser=False)
         return user
 
     def create_superuser(self, email, password=None):
