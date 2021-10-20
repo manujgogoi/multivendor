@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # Our apps
     'accounts',
+    'vendor',
 ]
 
 AUTH_USER_MODEL = 'accounts.User' # Changes the built-in user model to ours
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -245,3 +245,45 @@ workflow using pip, virtualenv, and the good old requirements.txt.
 06:30 PM - 11:21 PM
 --------------------------------------------------------
 Implement testing for accounts.models.py
+
+
+09-10-2021
+========================================================
+06:32 AM
+--------------------------------------------------------
+1) Creating vendor app
+	>>py manage.py startapp vendor
+
+
+19-10-2021
+========================================================
+05:53 PM
+--------------------------------------------------------
+DJANGO TEMPLATES & VIEWS
+
+1) Create a dir named 'templates' inside of project root dir
+2) Add following code insde of settings TEMPLATES:
+	>>'DIRS': [BASE_DIR / "templates"],
+	
+3) Create urls.py inside of vendor app and added the following code:
+	>>	from django.urls import path
+		from . import views
+	 	urlpatterns = [
+    		path('',views.home),
+		]
+
+4) include this vendor urls.py inside of root(core) urls.py
+	>>	urlpatterns = [
+			....
+    		path('vendor/',include("vendor.urls")),
+			....
+		]
+
+
+20-10-2021
+========================================================
+06:04 AM
+--------------------------------------------------------
+1) Clean some codes
+2) commit
+3) push
