@@ -21,7 +21,7 @@ def register_view(request):
             return redirect("/")
         else:
             request.session['register_error'] = 1 # 1 == True
-    return render(request, "accounts/login.html", {"form": form})
+    return render(request, "accounts/register.html", {"form": form})
 
 
 def login_view(request):
