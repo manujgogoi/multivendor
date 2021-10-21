@@ -287,3 +287,12 @@ DJANGO TEMPLATES & VIEWS
 1) Clean some codes
 2) commit
 3) push
+
+08:34 PM
+---------------------------------------------------------
+Integrate django-allauth plugin
+
+1) Install django-allauth
+	>>pipenv install django-allauth
+
+2) Configure allauth and templates
