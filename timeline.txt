@@ -296,3 +296,59 @@ Integrate django-allauth plugin
 	>>pipenv install django-allauth
 
 2) Configure allauth and templates
+
+
+30-10-2021
+=========================================================
+08:00 AM
+---------------------------------------------------------
+
+1) Remove allauth and related templates
+2) uninstall django-allauth
+
+08:55 AM
+---------------------------------------------------------
+
+1) Install django-rest-framework
+>> pipenv install djangorestframework
+
+2) Add to INSTALLED_APPS setting (core.settings):
+
+	INSTALLED_APPS = [
+		...
+		'rest_framework',
+	]
+
+3) Add REST_FRAMEWORK in setting:
+
+	REST_FRAMEWORK = {
+		# Use Django's standard `django.contrib.auth` permissions,
+		# or allow read-only access for unauthenticated users.
+		'DEFAULT_PERMISSION_CLASSES': [
+			# 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+			
+			'rest_framework.permissions.AllowAny'
+		]
+	}
+
+4) Install Django Cors Headers
+>> pipenv install django-cors-headers
+
+5) In INSTALLED_APPS settings add the following:
+	
+	INSTALLED_APPS = [
+		...
+		'corsheaders',
+		...
+	]
+
+6) Add the middleware classes to listen in on server responses.
+
+	MIDDLEWARE = [
+		...,
+		'corsheaders.middleware.CorsMiddleware',
+		'django.middleware.common.CommonMiddleware',
+		...,
+	]
+
+7) git add, commit and push

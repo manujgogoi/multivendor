@@ -8,6 +8,8 @@ pillow = "*"
 django = "*"
 mysqlclient = "*"
 coverage = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 

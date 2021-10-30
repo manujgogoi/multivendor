@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third party apps
+    'rest_framework',
+    'corsheaders',
 
     # Our apps
     'accounts',
@@ -47,9 +50,28 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'accounts.User' # Changes the built-in user model to ours
 
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        'rest_framework.permissions.AllowAny'
+    ]
+}
+
+CORS_ALLOWED_ORIGINS = [
+    "https://domain.com",
+    "https://api.domain.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:8000"
+]
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
