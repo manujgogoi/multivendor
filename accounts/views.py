@@ -1,9 +1,12 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.shortcuts import redirect, render
-from .forms import LoginForm, RegisterForm
 
 
 User = get_user_model()
+
+
+
+
 
 # Create your views here.
 # def register_view(request):

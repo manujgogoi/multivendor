@@ -8,7 +8,6 @@ pillow = "*"
 django = "*"
 mysqlclient = "*"
 coverage = "*"
-django-allauth = "*"
 
 [dev-packages]
 

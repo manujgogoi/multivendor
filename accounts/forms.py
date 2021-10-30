@@ -7,59 +7,59 @@ from django.utils.translation import ugettext_lazy as _
 User = get_user_model()
 
 
-# class LoginForm(forms.Form):
-#     email = forms.CharField()
-#     password = forms.CharField(widget=forms.PasswordInput(
-#         attrs={
-#             "class": "form-control",
-#             "id": "user-password",
-#         }
-#     ))
+class LoginForm(forms.Form):
+    email = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            "class": "form-control",
+            "id": "user-password",
+        }
+    ))
 
-#     def clean_email(self):
-#         email = self.cleaned_data.get("email")
-#         qs = User.objects.filter(username__iexact=email)
-#         if not qs.exists():
-#             raise forms.ValidationError("This is an invalid email")
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        qs = User.objects.filter(username__iexact=email)
+        if not qs.exists():
+            raise forms.ValidationError("This is an invalid email")
 
-#         return email
+        return email
 
 
-# class RegisterForm(forms.ModelForm):
-#     '''The Default'''
-#     password1 = forms.CharField(label=_('Password'), widget=forms.PasswordInput(
-#         attrs={
-#             "class": "form-control", 
-#             "id": "user-password"
-#         }
-#     ))
-#     password2 = forms.CharField(label=_('Comfirm Password'), widget=forms.PasswordInput(
-#                 attrs={
-#             "class": "form-control", 
-#             "id": "user-confirm-password"
-#         }
-#     ))
+class RegisterForm(forms.ModelForm):
+    '''The Default'''
+    password1 = forms.CharField(label=_('Password'), widget=forms.PasswordInput(
+        attrs={
+            "class": "form-control", 
+            "id": "user-password"
+        }
+    ))
+    password2 = forms.CharField(label=_('Comfirm Password'), widget=forms.PasswordInput(
+                attrs={
+            "class": "form-control", 
+            "id": "user-confirm-password"
+        }
+    ))
 
-#     class Meta:
-#         model = User
-#         fields = ['email']
+    class Meta:
+        model = User
+        fields = ['email']
 
-#     def clean_email(self):
-#         '''Verify email is available'''
-#         email = self.cleaned_data.get('email')
-#         qs = User.objects.filter(email__iexact=email)
-#         if qs.exists():
-#             raise forms.ValidationError(_("email is taken"))
-#         return email
+    def clean_email(self):
+        '''Verify email is available'''
+        email = self.cleaned_data.get('email')
+        qs = User.objects.filter(email__iexact=email)
+        if qs.exists():
+            raise forms.ValidationError(_("email is taken"))
+        return email
 
-#     def clean(self):
-#         '''Verify both passwords match'''
-#         cleaned_data = super().clean()
-#         password1 = cleaned_data.get("password1")
-#         password2 = cleaned_data.get("password2")
-#         if password1 is not None and password1 != password2:
-#             self.add_error("password2", "Your passwords must match")
-#         return cleaned_data
+    def clean(self):
+        '''Verify both passwords match'''
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get("password1")
+        password2 = cleaned_data.get("password2")
+        if password1 is not None and password1 != password2:
+            self.add_error("password2", "Your passwords must match")
+        return cleaned_data
 
 
 class UserAdminCreationForm(forms.ModelForm):

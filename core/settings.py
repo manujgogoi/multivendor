@@ -39,11 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-     # The following apps are required by django-allauth:
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
 
     # Our apps
     'accounts',
@@ -79,16 +74,6 @@ TEMPLATES = [
         },
     },
 ]
-
-AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
-
-SITE_ID = 2
 
 
 WSGI_APPLICATION = 'core.wsgi.application'
@@ -158,12 +143,4 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-#Django-allauth configurations
-ACCOUNT_EMAIL_REQUIRED=True
-ACCOUNT_AUTHENTICATION_METHOD="email"
-ACCOUNT_USER_MODEL_EMAIL_FIELD="email"
-ACCOUNT_USER_MODEL_USERNAME_FIELD=None
-ACCOUNT_USERNAME_REQUIRED=False
 
