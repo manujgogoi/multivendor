@@ -352,3 +352,11 @@ Integrate django-allauth plugin
 	]
 
 7) git add, commit and push
+
+8) Merge test-allauth branch to main branch and delete test-allauth
+>> git checkout main
+>> git merge test-allauth
+>> git branch -d test-allauth // delete local branch
+>> git push origin --delete test-allauth //delete Remote branch
+
+9) 
