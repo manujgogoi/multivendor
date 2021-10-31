@@ -10,6 +10,9 @@ mysqlclient = "*"
 coverage = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
+markdown = "*"
+django-filter = "*"
+django-pygments = "*"
 
 [dev-packages]
 

@@ -359,4 +359,34 @@ Integrate django-allauth plugin
 >> git branch -d test-allauth // delete local branch
 >> git push origin --delete test-allauth //delete Remote branch
 
-9) 
+9) git add, commit and push
+
+
+05:03 PM
+--------------------------------------------------------
+
+(djangorestframework and django-cors-headers are already installed)
+
+1. >> git branch test-drf # Django Rest Framework
+2. >> git checkout test-drf
+3. >> pipenv install markdown # Markdown support for the browsable API.
+4. >> pipenv install django-filter # # Filtering support
+5. To add REST framework's login and logout views in browsable API
+	added the following to root urls.py file.
+
+	urlpatterns = [
+		...
+		path('api-auth/', include('rest_framework.urls'))
+	]
+
+
+Create the Snippets app
+------------------------
+1. >> py manage.py startapp snippets
+2. Add snippets to INSTALLED_APPS
+3. Create the Snippet Model
+4. Install django-pygments
+	>> pipenv install django-pygments
+
+5. https://www.django-rest-framework.org/tutorial/1-serialization/
+

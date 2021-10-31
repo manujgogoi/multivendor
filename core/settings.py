@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Our apps
     'accounts',
     'vendor',
+    'snippets',
 ]
 
 AUTH_USER_MODEL = 'accounts.User' # Changes the built-in user model to ours
@@ -57,7 +58,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
         'rest_framework.permissions.AllowAny'
-    ]
+    ],
 }
 
 CORS_ALLOWED_ORIGINS = [
