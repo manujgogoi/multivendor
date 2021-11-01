@@ -13,6 +13,7 @@ django-cors-headers = "*"
 markdown = "*"
 django-filter = "*"
 django-pygments = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 

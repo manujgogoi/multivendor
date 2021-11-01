@@ -390,3 +390,50 @@ Create the Snippets app
 
 5. https://www.django-rest-framework.org/tutorial/1-serialization/
 
+
+31-10-2021
+=========================================================
+05:45 AM - 06:30 AM, 08:00 AM - 09:30 AM, 11:00 AM - 01:00 PM
+---------------------------------------------------------
+
+6. snippet app -
+	* Function based views
+	* Class based views
+	* ViewSets
+	* Custom Object level permissions
+
+7. Git add and commit changes
+8. Then -
+	>> git push origin test-drf
+
+
+05:30 PM - 05:45 PM, 06:15 PM - 
+----------------------------------------------------------
+Authentication
+----------------
+1.  'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
+
+2. Install Simple JWT 
+	>> pipenv install djangorestframework-simplejwt
+
+
+3. Add the following to REST_FRAMEWORK settings:
+	
+	'DEFAULT_AUTHENTICATION_CLASSES': (
+        ...
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+
+
+01-01-2021
+=========================================================
+05:00 AM - 01:16 PM (1:30 Hours gap)
+---------------------------------------------------------
+1. DRF 
+	i) User ViewSet setup
+	ii) User can create account
+	iii) User can login
+	iv) User can change password
+	v) 

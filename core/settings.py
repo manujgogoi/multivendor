@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Third party apps
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt',
 
     # Our apps
     'accounts',
@@ -59,6 +60,9 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
         'rest_framework.permissions.AllowAny'
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
 
 CORS_ALLOWED_ORIGINS = [

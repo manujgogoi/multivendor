@@ -51,7 +51,7 @@ class UserAdmin(BaseUserAdmin):
     form = UserAdminChangeForm  # Edit view
     add_form = UserAdminCreationForm # Create view
 
-    list_display = ('email', 'is_active', 'is_staff', 'is_superuser')
+    list_display = ('email', 'id', 'is_active', 'is_staff', 'is_superuser')
     list_filter = ('is_superuser', 'is_staff', 'is_active')
     fieldsets = (
         (None, {'fields': ('email', 'password', 'date_joined')}),
