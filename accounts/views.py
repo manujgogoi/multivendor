@@ -2,8 +2,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import viewsets, permissions, status, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from accounts.serializers import UserSerializer, PasswordSerializer
-from accounts.permissions import IsAdminAndSelfOrReadonly
+from accounts.serializers import EmailSerializer, UserSerializer, PasswordSerializer
+from accounts.permissions import IsAdminOrSelf
 
 User = get_user_model()
 
@@ -37,6 +37,20 @@ class UserViewSet(mixins.CreateModelMixin,
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+    @action(detail=True, methods=['post'])
+    def change_email(self, request, pk=None):
+        '''
+        Change Email id
+        '''
+        user = self.get_object()
+        serializer = EmailSerializer(data=request.data)
+        if serializer.is_valid():
+            user.email = serializer.validated_data['email']
+            user.save()
+            return Response({'message': 'email changed successfully'}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
     def get_permissions(self):
         """
         Instantiates and returns the list of permissions that this view requires.
@@ -44,6 +58,6 @@ class UserViewSet(mixins.CreateModelMixin,
         if self.action == 'create':
             permission_classes = [permissions.AllowAny]
         else:
-            permission_classes = [IsAdminAndSelfOrReadonly]
+            permission_classes = [IsAdminOrSelf]
         return [permission() for permission in permission_classes]
 

@@ -436,4 +436,29 @@ Authentication
 	ii) User can create account
 	iii) User can login
 	iv) User can change password
-	v) 
+
+
+02-01-2021
+=========================================================
+07:51 AM - 09:30 AM, 08:32 PM - 9:30 PM
+
+1. DRF API automated testing
+
+
+03-01-2021
+=========================================================
+06:24 AM - 10:30 AM
+
+1. DRF API automated Testing
+
+2. Accounts testing
+	> accounts.models testing done
+	> accounts.rest_api testing done
+	> accounts.serializers testing done
+	> accounts.views testing done
+	Not covered
+	> accounts.admin testing
+	> accounts.forms testing
+	> accounts.permissions testing
+
+3. Git add, commit and push

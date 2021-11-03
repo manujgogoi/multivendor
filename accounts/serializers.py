@@ -9,7 +9,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(
         write_only=True,
         required=True,
-        help_text='Please enter a strong password',
         style={'input_type': 'password', 'placeholder': 'Password'}
     )
     class Meta:
@@ -32,3 +31,24 @@ class PasswordSerializer(serializers.Serializer):
     """
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
+
+    def validate(self, data):
+        old_pass = data.get('old_password')
+        new_pass = data.get('new_password')
+        if old_pass == new_pass:
+            raise serializers.ValidationError("Please enter a new password!")
+        return data
+
+class EmailSerializer(serializers.Serializer):
+    '''
+    Serializer for email change endpoint.
+    '''
+    email = serializers.EmailField(max_length=255)
+
+    def validate_email(self, value):
+        '''
+        Check is email already exist
+        '''
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("This email already exists!")
+        return value
