@@ -2,6 +2,7 @@ from enum import auto
 from django.db import models
 from django.utils.translation import gettext as _
 
+from mptt.models import MPTTModel, TreeForeignKey
 
 from vendor.models import Vendor
 
@@ -10,7 +11,7 @@ MAX_DIGITS = 10
 DECIMAL_PLACES = 2
 
 # Product category model
-class Category(models.Model):
+class Category(MPTTModel):
     title = models.CharField(
         verbose_name=_("Category title"),
         max_length=50, 
@@ -20,7 +21,10 @@ class Category(models.Model):
         verbose_name=_("Category visibility"),
         help_text=_("Change category visibility"),
         default=True)
-    parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
+    parent = TreeForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
+
+    class MPTTMeta:
+        order_insertion_by = ['title']
 
     class Meta:
         ordering = ('title', )

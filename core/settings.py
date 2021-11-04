@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third party apps
+    'mptt',
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt',

@@ -504,7 +504,7 @@ Authentication
 4. >>python manage.py makemigrations
 5. >>python manage.py migrate
 
-02:09 PM-
+02:09 PM- 04:22 PM
 
 6. Remove snippets app
 	> Remove database tables
@@ -527,3 +527,31 @@ Authentication
 	remove errors
 
 10. Git and and commit
+
+11. Create a new branch called stores-api
+	>> git branch stores-api
+	>> git checkout stores-api
+	>> git push origin stores-api
+
+12. Delete stores_ tables from db (mysql)
+13. Delete all migration files from stores app
+14. Then create migrations again
+
+	>> python manage.py makemigrations
+	>> python manage.py migrate
+
+########################################
+Problem
+########################################
+Delete stores tables from db
+Delete migrations from stores app
+Then execute >> py manage.py makemigrations stores # Works successfully
+But 'py manage.py migrate stores' command gives 'No migration found'
+
+Solution
+#########################################
+Go to django_migrations table and delete stores related migration records
+Then migrate command worked
+
+15. Run tests for any possible errors
+16. Git add, commit and push to remote (stores-api)
