@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     # Our apps
     'accounts',
     'vendor',
-    'snippets',
+    'stores',
 ]
 
 AUTH_USER_MODEL = 'accounts.User' # Changes the built-in user model to ours
@@ -165,6 +165,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Media settings
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media/"
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

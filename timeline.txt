@@ -461,4 +461,55 @@ Authentication
 	> accounts.forms testing
 	> accounts.permissions testing
 
-3. Git add, commit and push
+3. Git add, commit
+
+07:00 PM - 08:20 PM
+
+4. Vendor app
+	> create VendorVeiwSet
+	> create VendorSerializer
+	> change 'created_by' field to 'owner' of Vendor model
+
+
+04-11-2021
+========================================================
+06:10 AM - 11:30 AM
+
+1. Create django store app
+	>> py manage.py startapp stores
+
+2. In stores.models.py
+	> Category Model
+	> Product Model
+	> Product Image Model
+		>>pipenv install pillow
+	> Specification Model
+
+3. Django media settings
+	> In settings.py add the following settings
+		# Media settings
+		MEDIA_URL = "/media/"
+		MEDIA_ROOT = BASE_DIR / "media/"
+	> In core.urls.py add the following settings
+
+		from django.conf import settings
+		from django.conf.urls.static import static
+		
+		....
+
+		if settings.DEBUG:
+    		urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+3. Add stores app to INSTALLED_APPS
+4. >>python manage.py makemigrations
+5. >>python manage.py migrate
+
+02:09 PM-
+
+6. Remove snippets app
+	> Remove database tables
+	>> py manage.py migrate snippets zero
+	> Remove snippets app from INSTALLED_APPS in my projects settings.py
+	> Delete snippets directory from project directory (I'll do it later)
+
+7. Git add and commit

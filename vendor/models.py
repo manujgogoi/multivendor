@@ -11,7 +11,7 @@ class Vendor(models.Model):
     is_active = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.OneToOneField(User, related_name='vendor', on_delete=models.CASCADE)
+    owner = models.OneToOneField(User, related_name='vendor', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['name']
