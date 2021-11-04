@@ -5,7 +5,6 @@ User = get_user_model()
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
-    snippets = serializers.HyperlinkedRelatedField(many=True, view_name='snippet-detail', read_only=True)
     password = serializers.CharField(
         write_only=True,
         required=True,
@@ -13,7 +12,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     )
     class Meta:
         model = User
-        fields = ['id', 'url', 'email', 'password', 'snippets']
+        fields = ['id', 'url', 'email', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):

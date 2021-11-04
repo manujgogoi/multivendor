@@ -513,3 +513,17 @@ Authentication
 	> Delete snippets directory from project directory (I'll do it later)
 
 7. Git add and commit
+
+8. Merge test-drf branch to main and delete test-drf branch
+	>> git checkout main  		#change branch to main
+ 	>> git merge test-drf 		#merge test-drf to main
+	>> git branch -d test-drf 	#delete test-drf local
+	>> git push origin --delete test-drf 	# delte test-drf remote (github)
+	>> git push origin main 	#push updates to remote repo
+
+9. Run testing to find any errors
+	>> coverage run --source='.' manage.py test
+	found errors related to deleted snippets app
+	remove errors
+
+10. Git and and commit

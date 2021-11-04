@@ -18,7 +18,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from snippets.views import SnippetViewSet
 from accounts.views import UserViewSet
 from vendor.views import VendorViewSet
 from rest_framework_simplejwt.views import (
@@ -27,7 +26,6 @@ from rest_framework_simplejwt.views import (
 )
 
 router = DefaultRouter()
-router.register(r'snippets', SnippetViewSet)
 router.register(r'users', UserViewSet)
 router.register(r'vendor', VendorViewSet)
 
