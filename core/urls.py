@@ -20,6 +20,7 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from accounts.views import UserViewSet
 from vendor.views import VendorViewSet
+from stores.views import CategoryViewSet
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -28,6 +29,7 @@ from rest_framework_simplejwt.views import (
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'vendor', VendorViewSet)
+router.register(r'store/category', CategoryViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
@@ -36,6 +38,7 @@ urlpatterns = [
     # simple JWT
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
 

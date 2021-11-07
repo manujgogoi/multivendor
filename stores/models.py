@@ -18,7 +18,7 @@ class Category(MPTTModel):
         unique=True
     )
     is_active = models.BooleanField(
-        verbose_name=_("Category visibility"),
+        verbose_name=_("Is Active"),
         help_text=_("Change category visibility"),
         default=True)
     parent = TreeForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
@@ -33,7 +33,6 @@ class Category(MPTTModel):
 
     def __str__(self):
         return self.title
-
 
 
 # Product model
@@ -117,12 +116,20 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+
+# Image uploading path   
+def upload_image_path(instance, filename):
+    product_dir = instance.product.title.replace(" ", "_")
+    product_dir += '_' + str(instance.product.id)
+    return f"stores/images/{product_dir}/{filename}"
+
+
 class Image(models.Model):
     product = models.ForeignKey(Product, related_name="images", on_delete=models.CASCADE)
     image = models.ImageField(
         verbose_name=_("image"),
         help_text=_("Upload a product image"),
-        upload_to='products/'
+        upload_to=upload_image_path
     )
     alt_text = models.CharField(max_length=100, blank=True, null=True)
     is_featured = models.BooleanField(
@@ -139,7 +146,7 @@ class Image(models.Model):
         verbose_name_plural = 'Images'
 
     def __str__(self):
-        return self.image
+        return str(self.image.name)
 
 
 class Specification(models.Model):
@@ -155,5 +162,3 @@ class Specification(models.Model):
 
     def __str__(self):
         return self.name + ':' + self.value
-
-    

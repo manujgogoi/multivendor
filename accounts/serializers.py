@@ -1,9 +1,12 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from vendor.models import Vendor
 
 User = get_user_model()
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+
+    vendor = serializers.HyperlinkedRelatedField(view_name='vendor-detail', read_only=True, many=False)
 
     password = serializers.CharField(
         write_only=True,
@@ -12,7 +15,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     )
     class Meta:
         model = User
-        fields = ['id', 'url', 'email', 'password']
+        fields = ['id', 'url', 'email', 'password', 'vendor']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):

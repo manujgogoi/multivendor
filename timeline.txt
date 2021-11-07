@@ -504,7 +504,7 @@ Authentication
 4. >>python manage.py makemigrations
 5. >>python manage.py migrate
 
-02:09 PM- 04:22 PM
+02:09 PM - 04:22 PM
 
 6. Remove snippets app
 	> Remove database tables
@@ -555,3 +555,64 @@ Then migrate command worked
 
 15. Run tests for any possible errors
 16. Git add, commit and push to remote (stores-api)
+
+07:39 PM - 09:45 PM
+
+1. ImageField settings of Image model in stores app
+(Not completed)
+
+05-11-2021
+=======================================================
+06:38 AM - 09:30 AM
+
+1. Django Image Upload system
+	> Create a function to generate the image uploading path
+		def upload_image_path(instance, filename)
+
+	> Change ImageField upload_to=upload_image_path
+
+	> Make Image and Specification TabularInline for Product admin
+
+2. Stores REST API
+	> Category viewsets, default routes and serializers are created
+
+
+06-11-2021
+===========================================================
+07:45 PM
+
+1. Duplicate Vendor Creation handling error
+TODO ......................
+
+07-11-2021
+============================================================
+01:07 PM - 02:59 PM
+
+1. Duplicate Vendor Creation error handling done
+
+	> In VendorViewSet override create method of mixins.CreateModelMixin class
+
+	def create(self, request, *args, **kwargs):
+        # Check user already has a vendor or not
+        user = self.request.user
+        vendor = user.vendor if hasattr(user, 'vendor') else None
+        if vendor is not None:
+            return Response({"error": [f"User {user.email} already has a vendor named {user.vendor}"]}, 
+            status=status.HTTP_400_BAD_REQUEST)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+2. TODO
+	- Testing Vendor app
+	- Complete functionalites of Product app
+		- Add Product - Only Vendor can add product
+		- View Product - Anyone Can view product
+		- Update and Delete Product - Only related Vendors have access
+
+	- Testing Product app
