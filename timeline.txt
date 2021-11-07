@@ -607,12 +607,3 @@ TODO ......................
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-
-2. TODO
-	- Testing Vendor app
-	- Complete functionalites of Product app
-		- Add Product - Only Vendor can add product
-		- View Product - Anyone Can view product
-		- Update and Delete Product - Only related Vendors have access
-
-	- Testing Product app
