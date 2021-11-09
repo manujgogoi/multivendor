@@ -16,15 +16,3 @@ class IsAdminOrReadOnly(permissions.BasePermission):
             return True
         return False
 
-
-class IsVendorOrReadOnly(permissions.BasePermission):
-    '''
-    This is a custom permission testing class for vendor
-    '''
-
-    message = 'You are not a vendor.'
-
-    # def has_permission(self, request, view):
-    #     if request.method in permissions.SAFE_METHODS:
-    #         return True
-    #     elif request.vendor

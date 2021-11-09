@@ -20,7 +20,7 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from accounts.views import UserViewSet
 from vendor.views import VendorViewSet
-from stores.views import CategoryViewSet
+from stores.views import CategoryViewSet, ProductViewSet
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -30,6 +30,7 @@ router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'vendor', VendorViewSet)
 router.register(r'store/category', CategoryViewSet)
+router.register(r'store/products', ProductViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),

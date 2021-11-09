@@ -607,3 +607,42 @@ TODO ......................
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+03:37 PM -
+
+2. Admin App unit testing
+
+
+08-11-2021
+==================================================
+05:30 AM - 07:30 AM, 08:30 AM - 09:20 AM, 06:30 PM - 09-30 PM
+
+1. Working to vendor app list and retrieve(vendor-detail) permissions
+
+
+09-11-2021
+=======================================================
+06:30 AM - 07:20 AM
+
+1. Vendor permission coding is done
+
+07:20 AM - 12:27 AM
+
+2. Vendor app testing
+	> Run testing on sqlite3 database for speed
+
+	in core.settings.py add the following code
+	
+	if 'test' in sys.argv:
+		DATABASES['default'] = {
+			'ENGINE': 'django.db.backends.sqlite3', 
+		}
+
+	> For final testing on actual database comment out previous code
+
+3. Vendor app testing complete
+
+06:01 PM
+
+4. git add, commit, and push to github

@@ -6,7 +6,7 @@
 
 ## Vendor App
 
-- [ ] Testing Vendor app
+- [x] Testing Vendor app
 
 ## Product App
 
