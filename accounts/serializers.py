@@ -34,6 +34,10 @@ class PasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
 
+    class Meta:
+        model = User
+        fields = ['old_password', 'new_password']
+
     def validate(self, data):
         old_pass = data.get('old_password')
         new_pass = data.get('new_password')

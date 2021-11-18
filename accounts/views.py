@@ -1,9 +1,12 @@
 from django.contrib.auth import get_user_model
-from rest_framework import viewsets, permissions, status, mixins
+from rest_framework import serializers, viewsets, permissions, status, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from accounts.serializers import EmailSerializer, UserSerializer, PasswordSerializer
 from accounts.permissions import IsAdminOrSelf
+
+from vendor.serializers import VendorSerializer;
+from vendor.models import Vendor;
 
 User = get_user_model()
 
@@ -49,6 +52,23 @@ class UserViewSet(mixins.CreateModelMixin,
             user.save()
             return Response({'message': 'email changed successfully'}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    @action(detail=True, methods=['GET'])
+    def get_own_vendor(self, request, pk=None):
+        '''
+        Get own vendor detail (if exist)
+        '''
+        user = self.get_object()
+        if user.vendor:
+            print(user.vendor.id)
+            queryset = Vendor.objects.get(owner=user);
+            print(queryset)
+            serializer = VendorSerializer(queryset, context={'request': request})
+            return Response(serializer.data, status=status.HTTP_200_OK)
+            
+        return Response({"error": ["User has no vendor"]}, status=status.HTTP_400_BAD_REQUEST)
+            
 
 
     def get_permissions(self):

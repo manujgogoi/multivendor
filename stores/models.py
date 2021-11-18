@@ -41,7 +41,7 @@ class Product(models.Model):
         verbose_name=_("Product title"),
         max_length=100
     )
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     sku = models.CharField(
         verbose_name=_("SKU"),
         help_text=_("Stock Keeping Unit"),
@@ -88,7 +88,7 @@ class Product(models.Model):
     )
     quantity = models.IntegerField(blank=True, null=True)
     wholesale_min_quantity = models.IntegerField(blank=True, null=True)
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.RESTRICT)
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.SET_NULL, blank=True, null=True)
     vendor = models.ForeignKey(Vendor, related_name='products', on_delete=models.CASCADE)
     is_active = models.BooleanField(
         verbose_name=_("Product visibility"),

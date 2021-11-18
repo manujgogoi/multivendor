@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from rest_framework import mixins
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -82,7 +83,7 @@ class VendorViewSet(
         user = self.request.user
         vendor = user.vendor if hasattr(user, 'vendor') else None
         if vendor is not None:
-            return Response({"error": [f"User {user.email} already has a vendor named {user.vendor}"]}, 
+            return Response({"detail": ["The User already has a vendor"]}, 
             status=status.HTTP_400_BAD_REQUEST)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
