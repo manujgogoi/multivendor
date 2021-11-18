@@ -6,8 +6,8 @@ from stores.serializers import ProductSerializer
 User = get_user_model()
 
 class VendorSerializer(serializers.HyperlinkedModelSerializer):
-    # products = serializers.HyperlinkedRelatedField(view_name='product-detail', read_only=True, many=True)
-    products = ProductSerializer(many=True)
+    products = serializers.HyperlinkedRelatedField(view_name='product-detail', read_only=True, many=True)
+    # products = ProductSerializer(many=True)
     owner = serializers.HyperlinkedRelatedField(view_name='user-detail', many=False, read_only=True)
     class Meta:
         model = Vendor
