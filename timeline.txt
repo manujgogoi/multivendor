@@ -646,3 +646,15 @@ TODO ......................
 06:01 PM
 
 4. git add, commit, and push to github
+
+
+20-11-2021
+=====================================================
+10:30 AM - 11:55 AM
+
+1. Testing in stores app:
+	i) Product API (Veiw)
+	ii) Category API (View)
+	iii) Specification API (View)
+
+2. add, commit & push

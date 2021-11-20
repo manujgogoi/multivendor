@@ -61,7 +61,7 @@ class ProductViewSet(mixins.CreateModelMixin,
                 serializer.is_valid(raise_exception=True)
                 self.perform_update(serializer)
                 return Response(serializer.data, status=status.HTTP_200_OK)
-            return Response({'error': 'Can\'t update other vendor product'}, status=status.HTTP_403_FORBIDDEN)
+            return Response({'error': 'This is not your product'}, status=status.HTTP_403_FORBIDDEN)
         return Response({'error': 'You are not a vendor'}, status=status.HTTP_403_FORBIDDEN)
 
 
