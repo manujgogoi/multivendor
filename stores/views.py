@@ -1,5 +1,5 @@
 from rest_framework import viewsets, permissions, status, mixins
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import action, permission_classes
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 from stores.models import Category, Image, Product, Specification
@@ -42,6 +42,7 @@ class ProductViewSet(mixins.CreateModelMixin,
         queryset = Product.objects.filter(is_active=True, vendor__is_active=True)
         serializer = ProductSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
+
 
     def update(self, request, *args, **kwargs):
 

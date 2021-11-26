@@ -26,7 +26,7 @@ class ImageSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
-    specifications = serializers.HyperlinkedIdentityField(view_name='specification-detail', many=True)
+    specifications = serializers.HyperlinkedIdentityField(view_name='specification-detail', read_only=True, many=True)
     images = serializers.HyperlinkedIdentityField(view_name='image-detail', read_only=True, many=True)
     class Meta:
         model = Product

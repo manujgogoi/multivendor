@@ -12,6 +12,9 @@ from vendor.permissions import IsOwnerOrReadOnly
 
 from django.contrib.auth import get_user_model
 
+from stores.models import Product
+from stores.serializers import ProductSerializer
+
 User = get_user_model()
 
 
@@ -65,6 +68,17 @@ class VendorViewSet(
         # context={'request':request} is required by Serializer with HyperlinkedRelatedField
         serializer = VendorSerializer(queryset, context={'request':request}, many=True)
         return Response(serializer.data)
+
+    # viewset custom action to get vendor products
+    @action(detail=True, methods=['get'])
+    def products(self, request, pk=None):
+        queryset = Vendor.objects.all()
+        vendor = get_object_or_404(queryset, pk=pk)
+        # vendor_products = Product.objects.filter(vendor=vendor)
+        vendor_products = Product.objects.all()
+        serializer = ProductSerializer(vendor_products, context={'request':request}, many=True)
+        return Response(serializer.data)
+
 
     def retrieve(self, request, pk=None):
         queryset = Vendor.objects.all()
