@@ -43,7 +43,6 @@ class ProductViewSet(mixins.CreateModelMixin,
         serializer = ProductSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
 
-
     def update(self, request, *args, **kwargs):
 
         queryset = Product.objects.all()
@@ -96,6 +95,21 @@ class ImageViewSet(
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
     permission_classes = [ImagePermission]
+
+    # Get images by product id
+    @action(detail=False, methods=['GET'])
+    def get_product_images(self, request):
+        
+        # Get request params
+        data = request.query_params
+
+        if data and data["product_id"] is not None :
+            queryset = Image.objects.filter(product__id=data["product_id"])
+            serializer = ImageSerializer(queryset, many=True, context={'request': request})
+            return Response(serializer.data)
+        return Response({"error": "product_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        
 
 class SpecificationViewSet(
                             mixins.CreateModelMixin,

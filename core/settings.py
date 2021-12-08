@@ -100,14 +100,17 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "https://domain.com",
-    "https://api.domain.com",
-    "http://localhost:8080",
-    "http://127.0.0.1:8000",
-    "http://127.0.0.1",
-    "http://localhost:3000"
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "https://domain.com",
+#     "https://api.domain.com",
+#     "http://localhost:8080",
+#     "http://127.0.0.1:8000",
+#     "http://127.0.0.1",
+#     "http://localhost:3000"
+# ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = ['*']
 
 
 MIDDLEWARE = [

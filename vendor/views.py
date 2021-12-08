@@ -73,7 +73,7 @@ class VendorViewSet(
     @action(detail=True, methods=['get'])
     def products(self, request, pk=None):
         queryset = Vendor.objects.all()
-        vendor = get_object_or_404(queryset, pk=pk)
+        # vendor = get_object_or_404(queryset, pk=pk)
         # vendor_products = Product.objects.filter(vendor=vendor)
         vendor_products = Product.objects.all()
         serializer = ProductSerializer(vendor_products, context={'request':request}, many=True)

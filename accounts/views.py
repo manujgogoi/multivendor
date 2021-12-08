@@ -70,6 +70,20 @@ class UserViewSet(mixins.CreateModelMixin,
         return Response({"error": ["User has no vendor"]}, status=status.HTTP_400_BAD_REQUEST)
             
 
+    @action(detail=False, methods=['POST'])
+    def email_exists(self, request, *args, **kwargs):
+        '''
+        Check Email id exists or not.
+        This action returns true if email not exist.
+        '''
+        serializer = EmailSerializer(data=request.data)
+
+        # If email already exists then is_valid() raises Error
+        # We return True if is_valid() raises an error 
+        if serializer.is_valid():
+            return Response(False)
+        return Response(True)
+
 
     def get_permissions(self):
         """
