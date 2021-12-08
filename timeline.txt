@@ -658,3 +658,10 @@ TODO ......................
 	iii) Specification API (View)
 
 2. add, commit & push
+
+
+08-12-2021
+=====================================================
+06:16 AM -
+
+1. Create Address app
