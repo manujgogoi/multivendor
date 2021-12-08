@@ -42,7 +42,7 @@ class District(models.Model):
         verbose_name_plural = 'Districts'
 
     def __str__(self):
-        return self.name
+        return self.name + ', '+self.state.name
 
 class PIN(models.Model):
     code = models.CharField(
@@ -98,3 +98,10 @@ class Address(models.Model):
         max_length=100,
     )
     village_or_town = models.ForeignKey(VillageOrTown, related_name="addresses", on_delete=models.RESTRICT)
+
+    class Meta:
+        verbose_name = 'address'
+        verbose_name_plural = 'addresses'
+
+    def __str__(self):
+        return self.village_or_town.name + ', ' + self.village_or_town.pin.code + ', ' + self.village_or_town.pin.district.name + ', ' + self.village_or_town.pin.district.state.name
