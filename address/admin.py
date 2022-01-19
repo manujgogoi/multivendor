@@ -1,5 +1,5 @@
 from django.contrib import admin
-from address.models import State, District, PIN, VillageOrTown, Address
+from address.models import State, District, PIN, VillageOrTown
 # Register your models here.
 
 class VillageOrTownInline(admin.TabularInline):
@@ -40,12 +40,8 @@ class VillageOrTownAdmin(admin.ModelAdmin):
     list_editable = ['is_deliverable']
     list_filter = ['is_deliverable']
 
-class AddressAdmin(admin.ModelAdmin):
-    model = Address
 
-
-# Register models
-admin.site.register(Address, AddressAdmin)
+#Register models
 admin.site.register(VillageOrTown, VillageOrTownAdmin)
 admin.site.register(PIN, PINAdmin)
 admin.site.register(District, DistrictAdmin)

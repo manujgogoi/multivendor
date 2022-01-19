@@ -34,7 +34,11 @@ class UserManager(BaseUserManager):
         return user
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email           = models.EmailField(_('email id'), max_length=255, unique=True)
+    email           = models.EmailField(
+        _('email id'), 
+        max_length=255, 
+        unique=True, 
+        error_messages={'unique':"This email has already been registered."})
     is_active       = models.BooleanField(_('is active'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.')) # Can login

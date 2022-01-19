@@ -19,8 +19,11 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from accounts.views import UserViewSet
+from user_profile.views import ProfileViewSet, DeliveryAddressViewSet
 from vendor.views import VendorViewSet
 from stores.views import CategoryViewSet, ProductViewSet, ImageViewSet, SpecificationViewSet
+from address.views import StateViewSet, DistrictViewSet, PINViewSet, VillageOrTownViewSet
+from orders.views import OrderViewSet
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -28,11 +31,20 @@ from rest_framework_simplejwt.views import (
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'profiles', ProfileViewSet)
+router.register(r'delivery_addresses', DeliveryAddressViewSet)
 router.register(r'vendor', VendorViewSet)
 router.register(r'store/category', CategoryViewSet)
 router.register(r'store/products', ProductViewSet)
 router.register(r'store/images', ImageViewSet)
 router.register(r'store/specification', SpecificationViewSet)
+router.register(r'address/states', StateViewSet )
+router.register(r'address/districts', DistrictViewSet)
+router.register(r'address/PINs', PINViewSet)
+router.register(r'address/villageOrTowns', VillageOrTownViewSet)
+router.register(r'orders', OrderViewSet)
+
+
 
 urlpatterns = [
     path('api/', include(router.urls)),

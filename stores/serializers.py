@@ -5,6 +5,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
     
     products = serializers.HyperlinkedRelatedField(view_name='product-detail', read_only=True, many=True)
 
+    # Making is_active default to true
     is_active = serializers.BooleanField(default=True)
     
     class Meta:

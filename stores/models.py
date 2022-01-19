@@ -95,6 +95,12 @@ class Product(models.Model):
         help_text=_("Change product visibility"),
         default=True
     )
+    is_available = models.BooleanField(
+        verbose_name=_("Is product available"),
+        help_text=_("Product available or not"),
+        default=True
+    )
+    
     is_featured = models.BooleanField(
         verbose_name=_("Featured product"),
         help_text=_("Mark as featured product"),

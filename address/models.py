@@ -85,23 +85,23 @@ class VillageOrTown(models.Model):
         return self.name
 
 
-class Address(models.Model):
-    house_no = models.CharField(
-        verbose_name=_("House No"),
-        help_text=_("House No./ Door No./ Flat No./ Apartment No./ Qtr No."),
-        max_length=50,
-        null=True,
-        blank=True
-    )
-    landmark = models.CharField(
-        verbose_name=_("Landmark"),
-        max_length=100,
-    )
-    village_or_town = models.ForeignKey(VillageOrTown, related_name="addresses", on_delete=models.RESTRICT)
+# class Address(models.Model):
+#     house_no = models.CharField(
+#         verbose_name=_("House No"),
+#         help_text=_("House No./ Door No./ Flat No./ Apartment No./ Qtr No."),
+#         max_length=50,
+#         null=True,
+#         blank=True
+#     )
+#     landmark = models.CharField(
+#         verbose_name=_("Landmark"),
+#         max_length=100,
+#     )
+#     village_or_town = models.ForeignKey(VillageOrTown, related_name="addresses", on_delete=models.RESTRICT)
 
-    class Meta:
-        verbose_name = 'address'
-        verbose_name_plural = 'addresses'
+#     class Meta:
+#         verbose_name = 'address'
+#         verbose_name_plural = 'addresses'
 
-    def __str__(self):
-        return self.village_or_town.name + ', ' + self.village_or_town.pin.code + ', ' + self.village_or_town.pin.district.name + ', ' + self.village_or_town.pin.district.state.name
+#     def __str__(self):
+#         return self.village_or_town.name + ', ' + self.village_or_town.pin.code + ', ' + self.village_or_town.pin.district.name + ', ' + self.village_or_town.pin.district.state.name

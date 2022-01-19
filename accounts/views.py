@@ -60,14 +60,14 @@ class UserViewSet(mixins.CreateModelMixin,
         Get own vendor detail (if exist)
         '''
         user = self.get_object()
-        if user.vendor:
-            print(user.vendor.id)
-            queryset = Vendor.objects.get(owner=user);
-            print(queryset)
-            serializer = VendorSerializer(queryset, context={'request': request})
-            return Response(serializer.data, status=status.HTTP_200_OK)
-            
-        return Response({"error": ["User has no vendor"]}, status=status.HTTP_400_BAD_REQUEST)
+        queryset = Vendor.objects.get(owner=user);
+        print(queryset)
+        serializer = VendorSerializer(queryset, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        # except Exception:
+        #     return Response({"error": ["User has no vendor"]}, status=status.HTTP_400_BAD_REQUEST)
+        
+
             
 
     @action(detail=False, methods=['POST'])
