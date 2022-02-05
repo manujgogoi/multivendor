@@ -39,29 +39,10 @@ class Order(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    completed = models.BooleanField(default=False)
+    delivered_at = models.DateTimeField(null=True, blank=True)
+    delivered = models.BooleanField(default=False)
     cancelled = models.BooleanField(default=False)
     paid = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.id)
-
-
-# class OrderItem(models.Model):
-#     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
-#     product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
-#     price = models.DecimalField(
-#         max_digits=MAX_DIGITS, 
-#         decimal_places=DECIMAL_PLACES
-#     )
-#     quantity = models.IntegerField(default=1)
-#     discount = models.DecimalField(
-#         max_digits=MAX_DIGITS,
-#         decimal_places=DECIMAL_PLACES
-#     )
-#     total = models.DecimalField(
-#         max_digits=MAX_DIGITS,
-#         decimal_places=DECIMAL_PLACES
-#     )
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)

@@ -16,10 +16,11 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
             'quantity',
             'discount',
             'total',
-            'completed',
+            'delivered',
             'cancelled',
             'paid',
             'delivery_address',
             'created_at',
-            'updated_at'
+            'updated_at',
+            'delivered_at',
         ]

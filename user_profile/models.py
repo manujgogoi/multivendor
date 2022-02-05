@@ -13,11 +13,34 @@ User = get_user_model()
 
 class DeliveryAddress(models.Model):
     # address = models.ForeignKey(Address, related_name="delivery_addresses", on_delete=models.SET_NULL, null=True, blank=True)
-    profile = models.ForeignKey('Profile', related_name="delivery_addresses", on_delete=models.CASCADE)
-    state = models.ForeignKey(State, related_name="delivery_addresses", on_delete=models.SET_NULL, null=True, blank=True)
-    district = models.ForeignKey(District, related_name="delivery_addresses", on_delete=models.SET_NULL, null=True, blank=True)
-    pin_code = models.ForeignKey(PIN, related_name="delivery_addresses", on_delete=models.SET_NULL, null=True, blank=True)
-    village_or_town = models.ForeignKey(VillageOrTown, related_name="delivery_addresses", on_delete=models.SET_NULL, null=True, blank=True)
+    profile = models.ForeignKey(
+        'Profile', 
+        related_name="delivery_addresses", 
+        on_delete=models.CASCADE)
+    state = models.ForeignKey(
+        State, 
+        related_name="delivery_addresses", 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True)
+    district = models.ForeignKey(
+        District, 
+        related_name="delivery_addresses", 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True)
+    pin_code = models.ForeignKey(
+        PIN, 
+        related_name="delivery_addresses", 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True)
+    village_or_town = models.ForeignKey(
+        VillageOrTown, 
+        related_name="delivery_addresses", 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True)
     house_no = models.CharField(
         verbose_name=_('house_no'),
         help_text=_('House no./ Quarter no./ Building no/ Apartment Name ...'),
@@ -88,13 +111,41 @@ class Profile(models.Model):
         blank=True,
     )
 
-    created_at = models.DateTimeField(_("Created at"), auto_now_add=True, editable=False)
-    updated_at = models.DateTimeField(_('Updated at'), auto_now=True)
-    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
-    state = models.ForeignKey(State, related_name="user_profiles", on_delete=models.SET_NULL, null=True, blank=True)
-    district = models.ForeignKey(District, related_name="user_profiles", on_delete=models.SET_NULL, null=True, blank=True)
-    pin_code = models.ForeignKey(PIN, related_name="user_profiles", on_delete=models.SET_NULL, null=True, blank=True)
-    village_or_town = models.ForeignKey(VillageOrTown, related_name="user_profiles", on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(
+        _("Created at"), 
+        auto_now_add=True, 
+        editable=False)
+    updated_at = models.DateTimeField(
+        _('Updated at'), 
+        auto_now=True)
+    user = models.OneToOneField(
+        User, 
+        related_name="profile", 
+        on_delete=models.CASCADE)
+    state = models.ForeignKey(
+        State, 
+        related_name="user_profiles", 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True)
+    district = models.ForeignKey(
+        District, 
+        related_name="user_profiles", 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True)
+    pin_code = models.ForeignKey(
+        PIN, 
+        related_name="user_profiles", 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True)
+    village_or_town = models.ForeignKey(
+        VillageOrTown, 
+        related_name="user_profiles", 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True)
     house_no = models.CharField(
         verbose_name=_('house_no'),
         help_text=_('House no./ Quarter no./ Building no/ Apartment Name ...'),

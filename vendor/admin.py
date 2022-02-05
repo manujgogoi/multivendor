@@ -2,4 +2,9 @@ from django.contrib import admin
 from .models import Vendor
 
 # Register your models here.
-admin.site.register(Vendor)
+
+
+class VendorAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'is_active')
+
+admin.site.register(Vendor, VendorAdmin)
