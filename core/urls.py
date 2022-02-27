@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from accounts.views import UserViewSet
+from accounts.views import UserViewSet, Check
 from user_profile.views import ProfileViewSet, DeliveryAddressViewSet
 from vendor.views import VendorViewSet
 from stores.views import CategoryViewSet, ProductViewSet, ImageViewSet, SpecificationViewSet
@@ -53,7 +53,10 @@ urlpatterns = [
     # simple JWT
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    # Server connection check (accounts.views.Check)
+    path('api/check/', Check.as_view(), name="check_connection"),
 ]
 
 

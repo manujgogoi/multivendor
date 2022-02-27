@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from stores.models import Product
 from accounts.models import User
+from carriers.models import Carrier
 from vendor.models import Vendor
 from user_profile.models import DeliveryAddress
 
@@ -16,6 +17,12 @@ class Order(models.Model):
     customer = models.ForeignKey(User, related_name='orders', on_delete=models.CASCADE)
     vendor = models.ForeignKey(Vendor, related_name='orders', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='orders', on_delete=models.CASCADE)
+    carrier = models.ForeignKey(
+        Carrier, 
+        related_name="orders", 
+        null=True, 
+        blank=True, 
+        on_delete=models.SET_NULL)
     delivery_address = models.ForeignKey(
         DeliveryAddress, 
         related_name='orders', 

@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers, viewsets, permissions, status, mixins
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
@@ -10,6 +11,16 @@ from vendor.serializers import VendorSerializer;
 from vendor.models import Vendor;
 
 User = get_user_model()
+
+
+# A view to check server connection
+class Check(APIView):
+    """
+    Server availability check
+    """
+    def get(self, request, format=None):
+        return Response(data={}, status=status.HTTP_200_OK)
+
 
 class UserViewSet(mixins.CreateModelMixin, 
                   mixins.RetrieveModelMixin, 

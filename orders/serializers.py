@@ -12,6 +12,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
             'customer',
             'vendor',
             'product',
+            'carrier',
             'price',
             'quantity',
             'discount',
